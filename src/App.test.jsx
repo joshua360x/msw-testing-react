@@ -24,7 +24,7 @@ const user = {
 }
 
 const handlers = [
-  rest.get(`${process.env.REACT_APP_SUPABASE_URL}/rest/v1/users?select=*`, (req, res, ctx) => res(ctx.json(user)))
+  rest.get(`${process.env.REACT_APP_SUPABASE_URL}/rest/v1/users`, (req, res, ctx) => res(ctx.json([user])))
 ]
 
 // 🚨 Create your server
@@ -39,7 +39,7 @@ test('Should render the header', async () => {
   render(<App />)
   const banner = screen.getByRole('banner')
   const headerImg = screen.getByAltText(/alchemy/i)
-  const profileName = await screen.findByText(user.name)
+  const profileName = await screen.findByText(user.name, {}, { timeout: 4000 })
 
   expect(banner).toHaveStyle({
     background: 'var(--grey)',
