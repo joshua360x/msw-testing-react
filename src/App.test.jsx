@@ -4,14 +4,15 @@
 import { screen, render } from '@testing-library/react'
 // 🚨
 // import rest
-import { rest } from 'msw'
+// import { rest } from 'msw'
 
 // import setupServer
-import { setupServer } from 'msw/node'
+// import { setupServer } from 'msw/node'
 
 import App from './App'
 
-const user = {
+// eslint-disable-next-line import/prefer-default-export
+export const user = {
   id: 1,
   created_at: '2021-12-13T00:17:29+00:00',
   // 🚨 Add a name here
@@ -23,17 +24,17 @@ const user = {
   color: 'crimson',
 }
 
-const handlers = [
-  rest.get(`${process.env.REACT_APP_SUPABASE_URL}/rest/v1/users`, (req, res, ctx) => res(ctx.json([user])))
-]
+// const handlers = [
+//   rest.get(`${process.env.REACT_APP_SUPABASE_URL}/rest/v1/users`, (req, res, ctx) => res(ctx.json([user])))
+// ]
 
 // 🚨 Create your server
-const server = setupServer(...handlers)
+// const server = setupServer(...handlers)
 // 🚨 Listen for server start
-beforeAll(() => server.listen())
-afterEach(() => server.resetHandlers())
-// 🚨 Close server when complete
-afterAll(() => server.close())
+// beforeAll(() => server.listen())
+// afterEach(() => server.resetHandlers())
+// // 🚨 Close server when complete
+// afterAll(() => server.close())
 
 test('Should render the header', async () => {
   render(<App />)
