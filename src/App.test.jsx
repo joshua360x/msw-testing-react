@@ -4,12 +4,13 @@
 import { screen, render } from '@testing-library/react'
 // 🚨
 // import rest
-// import { rest } from 'msw'
+import { rest } from 'msw'
 
 // import setupServer
 // import { setupServer } from 'msw/node'
 
 import App from './App'
+import { sasukeServer, server } from './setupTests'
 
 // eslint-disable-next-line import/prefer-default-export
 export const user = {
@@ -62,6 +63,10 @@ test('Should render the header with Sasuke 🌬️🔥', async () => {
   }
 
   // 🚨 Use the server to change the response for this test
+    const handlersForSpecificOne = [
+  rest.get(`${process.env.REACT_APP_SUPABASE_URL}/rest/v1/users`, (req, res, ctx) => res(ctx.json([sasuke])))
+]
+  server.use(...handlersForSpecificOne)
 
   render(<App />)
 

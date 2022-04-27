@@ -39,8 +39,23 @@ const handlers = [
   rest.get(`${process.env.REACT_APP_SUPABASE_URL}/rest/v1/users`, (req, res, ctx) => res(ctx.json([user])))
 ]
 
-const server = setupServer(...handlers)
+// function getRightData(data) {
+//   const handlersForSpecificOne = [
+//   rest.get(`${process.env.REACT_APP_SUPABASE_URL}/rest/v1/users`, (req, res, ctx) => res(ctx.json(data)))
+// ]
+// return handlersForSpecificOne
+// }
 
+// function serverSet(data) {
+//   return server.use(data)
+// }
+// const handlersForSpecificOne = [
+//   rest.get(`${process.env.REACT_APP_SUPABASE_URL}/rest/v1/users`, (req, res, ctx) => res(ctx.json([user])))
+// ]
+
+export const server = setupServer(...handlers)
+// export const sasukeServer = server.use()
+// const sasukeServer = server.use()
 
 
 beforeAll(() => server.listen())
