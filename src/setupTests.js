@@ -5,7 +5,8 @@
 import '@testing-library/jest-dom';
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
-import { user } from './App.test';
+import { user } from './services/data';
+
 
 
 // take data and make it a new user 
@@ -53,6 +54,7 @@ const handlers = [
 //   rest.get(`${process.env.REACT_APP_SUPABASE_URL}/rest/v1/users`, (req, res, ctx) => res(ctx.json([user])))
 // ]
 
+// eslint-disable-next-line import/prefer-default-export
 export const server = setupServer(...handlers)
 // export const sasukeServer = server.use()
 // const sasukeServer = server.use()
